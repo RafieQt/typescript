@@ -2,15 +2,13 @@
 
 ## Introduction
 
-In TypeScript, creating multiple variations of the same interface can lead to repetitive code. To solve this problem, TypeScript provides utility types like `Pick` and `Omit`. These utility types help developers create specialized "slices" of a master interface without rewriting properties manually.
-
-Using these utility types helps maintain the DRY (Don't Repeat Yourself) principle and makes code easier to maintain.
+In TypeScript, creating multiple variations of the same interface can lead to repetitive code which goes against DRY theory. To solve this problem, TypeScript provides utility types like `Pick` and `Omit`. These utility types help developers create specialized "slices" of a master interface without rewriting properties again and again, which helps to follow the DRY theory.
 
 ---
 
 ## The Problem Without Pick and Omit
 
-Suppose we have a master interface:
+Below is a master interface:
 
 ```ts
 interface User {
@@ -21,7 +19,7 @@ interface User {
 }
 ```
 
-Now imagine we need another type that only contains `id`, `name`, and `email`.
+Now if we need another type that only contains `id`, `name`, and `email`.
 
 One option is to create another interface manually:
 
@@ -33,7 +31,7 @@ interface PublicUser {
 }
 ```
 
-This works, but it repeats code unnecessarily. If the `User` interface changes later, we must also update `PublicUser`, which increases maintenance complexity and violates the DRY principle.
+This works, but it repeats code unnecessarily which goes against DRY.
 
 ---
 
@@ -46,13 +44,6 @@ Example:
 ```ts
 type PublicUser = Pick<User, "id" | "name" | "email">;
 ```
-
-This creates a new type containing only:
-- `id`
-- `name`
-- `email`
-
-without rewriting them manually.
 
 ---
 
